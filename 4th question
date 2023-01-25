@@ -1,0 +1,39 @@
+4     Write a program that reads the contents of a file containing Book objects and prints them to the console. The program should use the fstream library to open the file, read the Book objects one at a time, and print their title, author, ISBN, price and stock to the console.
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class Book
+{
+    public:
+        std::string title;
+        std::string author;
+        std::string ISBN;
+        double price;
+        int stock;
+};
+
+int main()
+{
+    std::ifstream file("books.dat", std::ios::binary);
+    if (!file) {
+        std::cerr << "Error opening file" << std::endl;
+        return 1;
+    }
+    while (!file.eof()) {
+        Book book;
+        file.read((char*) &book, sizeof(book));
+        if(file.good()){
+            std::cout << "Title: " << book.title << std::endl;
+            std::cout << "Author: " << book.author << std::endl;
+            std::cout << "ISBN: " << book.ISBN << std::endl;
+            std::cout << "Price: " << book.price << std::endl;
+            std::cout << "Stock: " << book.stock << std::endl;
+        }
+    }
+    file.close();
+    return 0;
+}
+
+
