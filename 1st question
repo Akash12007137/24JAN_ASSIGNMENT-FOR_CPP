@@ -1,0 +1,31 @@
+1.	Write a program that creates a class called "Student" with the following data members:
+name (string)
+age (int)
+grade (double)
+In the main function, create an instance of the Student class and initialize its data members. Then, open a file for writing and write the contents 
+of the Student object to the file.
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class Student
+{
+    public:
+        string name;
+        int age;
+        double grade;
+};
+int main()
+{
+    Student student;
+    student.name = "John Smith";
+    student.age = 20;
+    student.grade = 85.5;
+    ofstream file("students.txt", ios::out);
+    file << student.name << endl;
+    file << student.age << endl;
+    file << student.grade << endl;
+    file.close();
+    return 0;
+}
