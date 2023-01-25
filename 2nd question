@@ -1,4 +1,5 @@
-2.	Write a program that reads the contents of a file containing Student objects and prints them to the console. The program should open the file, read the Student objects one at a time, and print their name, age, and grade to the console.
+2.	Write a program that reads the contents of a file containing Student objects and prints them to the console. The program should open the file, read the 
+Student objects one at a time, and print their name, age, and grade to the console.
 
 #include <iostream>
 #include <fstream>
@@ -7,15 +8,21 @@
 class Student
 {
     public:
-        string name;
+        std::string name;
         int age;
         double grade;
 };
+
 int main()
 {
-    ifstream file("students.txt");
+    std::ifstream file("students.dat", std::ios::binary);
     if (!file) {
-        std::cerr << "Error opening file" &&8203;`oaicite:{"index":0,"invalid_reason":"Malformed citation << std::endl;\n        return 1;\n    }\n\n    // Read the Student objects one at a time\n    while (!file.eof()) {\n        Student student;\n        file >> student.name >> student.age >>"}`&#8203; student.grade;
+        std::cerr << "Error opening file" << std::endl;
+        return 1;
+    }
+    while (!file.eof()) {
+        Student student;
+        file.read((char*) &student, sizeof(student));
         if(file.good()){
             std::cout << "Name: " << student.name << std::endl;
             std::cout << "Age: " << student.age << std::endl;
@@ -23,6 +30,6 @@ int main()
         }
     }
     file.close();
-
     return 0;
 }
+
